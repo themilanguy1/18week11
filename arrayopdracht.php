@@ -1,5 +1,5 @@
 <?php
-$age = array(
+$wijn = array(
     "Chardonnai"=>array(
         "2010"=>"3",
         "2011"=>"5",
@@ -16,6 +16,19 @@ $age = array(
         "2012"=>"2"
         )
     );
+
+    /* 
+        http://php.net/manual/en/function.key.php
+
+        De loop is niet helemaal dynamisch aangezien de jaartallen 
+        op dit moment nog hardcoded zijn.
+    */
+    foreach ($wijn as $key => $value) {
+        echo $key . "<br>";
+        echo "2010: " . $value['2010'] . "<br>";
+        echo "2011: " . $value['2011'] . "<br>";
+        echo "2012: " . $value['2012'] . "<br>";
+    }
 
 // foreach($age as $x => $x_value) {
 //     echo $x." ";
