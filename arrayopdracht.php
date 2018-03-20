@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+
 <?php
 $wijn = array(
     "Chardonnai"=>array(
@@ -45,8 +46,7 @@ $wijn = array(
     echo "<th> </th> <th>2010</th> <th>2011</th> <th>2012</th>";
     foreach ($wijn as $key => $value) {
         echo "<tr>";
-        echo "<td>";
-        echo "<a href='?id='$key'>.$key."</a></td>";
+        echo "<td><a href='?id='$key'>$key</a></td>";
         echo "<td>".$wijn[$key]['2010']."</td>";
         echo "<td>".$wijn[$key]['2011']."</td>";
         echo "<td>".$wijn[$key]['2012']."</td>";
@@ -55,7 +55,7 @@ $wijn = array(
 
     echo "</table>";
 
-    function delArray()
+    // function delArray();
 
 ?>
 
