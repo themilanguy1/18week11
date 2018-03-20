@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    table, td {
+        border: 1px solid black;
+    }
+    th {
+        min-width: 40px;
+        border-bottom: 1px solid black;
+    }
+    </style>
+</head>
+<body>
 <?php
 $wijn = array(
     "Chardonnai"=>array(
@@ -23,18 +41,19 @@ $wijn = array(
         De loop is niet helemaal dynamisch aangezien de jaartallen 
         op dit moment nog hardcoded zijn.
     */
+    echo "<table>";
+    echo "<th> </th> <th>2010</th> <th>2011</th> <th>2012</th>";
     foreach ($wijn as $key => $value) {
-        // echo $wijn[$key]['2010'] . "<br>";
-        echo $key . "<br>";
-        echo "2010: " . $value['2010'] . "<br>";
-        echo "2011: " . $value['2011'] . "<br>";
-        echo "2012: " . $value['2012'] . "<br>";
+        echo "<tr>";
+        echo "<td>".$key."</td>";
+        echo "<td>".$wijn[$key]['2010']."</td>";
+        echo "<td>".$wijn[$key]['2011']."</td>";
+        echo "<td>".$wijn[$key]['2012']."</td>";
+        echo "</tr>";
     }
 
-// foreach($age as $x => $x_value) {
-//     echo $x." ";
-//     echo $x_value[0][0]." ".$x_value[0][1]."<br>";
-// }
-//test
-
+    echo "</table>";
 ?>
+
+</body>
+</html>
