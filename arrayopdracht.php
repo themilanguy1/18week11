@@ -17,12 +17,18 @@
         margin: 0;
         padding: 0;
     }
+    a {
+        text-decoration: none;
+        color: salmon;
+    }
     </style>
 </head>
 <body>
 
 <?php
-$wijn = array(
+session_start();
+
+$_SESSION['wijnarray'] = array(
     "Chardonnai"=>array(
         "2010"=>"3",
         "2011"=>"5",
@@ -40,6 +46,8 @@ $wijn = array(
         )
     );
 
+    $wijn = $_SESSION['wijnarray'];
+
     /* 
         http://php.net/manual/en/function.key.php
 
@@ -51,8 +59,8 @@ $wijn = array(
     foreach ($wijn as $key => $value) {
         echo "<tr>";
         echo "<td><a href='arrayopdracht.php?id=$key'>$key</a></td>";
-        //echo "<td>".$wijn[$key]['2010']."</td>";
-        echo "<td>".$wijn[$_GET[$key]]['2010']."</td>";
+        echo "<td>".$wijn[$key]['2010']."</td>";
+        // echo "<td>".$wijn[$_GET[$key]]['2010']."</td>";
         echo "<td>".$wijn[$key]['2011']."</td>";
         echo "<td>".$wijn[$key]['2012']."</td>";
         echo "</tr>";
@@ -62,24 +70,40 @@ $wijn = array(
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        if($id == "Bordeaux") {
-            echo "<td>".$wijn[$_GET['Bordeaux']]['2010']."</td>";
-            $wijn['Bordeaux']['2010'] = null;
+        // if($id == "Bordeaux") {
+            $wijn[$id]['2010'] = null;
+           // unset($wijn[$id]['2010']);
+            echo "<td>".$wijn[$id]['2010']."</td>";
 
         }
-        else if($id == "Chardonnai") {
-            echo $wijn['Chardonnai']['2010'];
-            $wijn['Chardonnai']['2010'] = null;
-            echo $wijn['Chardonnai']['2010'];
+
+        echo "<table>";
+        echo "<th> </th> <th>2010</th> <th>2011</th> <th>2012</th>";
+        foreach ($wijn as $key => $value) {
+            echo "<tr>";
+            echo "<td><a href='arrayopdracht.php?id=$key'>$key</a></td>";
+            echo "<td>".$wijn[$key]['2010']."</td>";
+            // echo "<td>".$wijn[$_GET[$key]]['2010']."</td>";
+            echo "<td>".$wijn[$key]['2011']."</td>";
+            echo "<td>".$wijn[$key]['2012']."</td>";
+            echo "</tr>";
         }
-        else if($id == "Chateau migraine") {
-            echo $wijn['Chateau migraine']['2010'];
-            $wijn['Chateau migraine']['2010'] = null;
-            echo $wijn['Chateau migraine']['2010'];
-        } else {
-            echo "Klik een wijn om te verwijdern.";
-        }
-    }
+    
+        echo "</table>";
+    //     }
+    //     else if($id == "Chardonnai") {
+    //         echo $wijn['Chardonnai']['2010'];
+    //         $wijn['Chardonnai']['2010'] = null;
+    //         echo $wijn['Chardonnai']['2010'];
+    //     }
+    //     else if($id == "Chateau migraine") {
+    //         echo $wijn['Chateau migraine']['2010'];
+    //         $wijn['Chateau migraine']['2010'] = null;
+    //         echo $wijn['Chateau migraine']['2010'];
+    //     } else {
+    //         echo "Klik een wijn om te verwijdern.";
+    //     }
+    // }
 
 ?>
 
