@@ -24,31 +24,24 @@
     </style>
 </head>
 <body>
-<h3>Wijn toevoegen</h3>
-    <form method="get">
-        <label>Naam</label>
-        <input type="text" name="wine" required><br>
 
-        <label>Rating 1:</label>
-        <input type="text" name="rating1"><br>
-
-        <label>Rating 2:</label>
-        <input type="text" name="rating2"><br>
-
-        <label>Rating 3:</label>
-        <input type="text" name="rating3"><br>
-
-        <input type="submit" value="submit">
-    </form>
 <?php
-/*
-https://stackoverflow.com/questions/1960730/add-values-to-an-associative-array-in-php
-*/
 session_start();
 $exits = FALSE;
 
+<<<<<<< HEAD
 if(isset($_SESSION['wijnarray'])) {
   
+=======
+// Check of the de wijnarray session bestaat
+if(isset($_SESSION['wijnarray'])) {
+    // Loop door de array heen
+    foreach($_SESSION['wijnarray'] as $wijnItem) {
+        // Delete rij gebasseerd op input
+        unset($_SESSION['wijnarray'][$_GET['id']]);
+    }
+// Aanmaken array als de session niet is geset
+>>>>>>> 6e95dc87748e017790539f3d1c1e093214c1cc53
 } else {
 $_SESSION['wijnarray'] = array( 
     "Chardonnai"=>array(
@@ -67,9 +60,8 @@ $_SESSION['wijnarray'] = array(
         "2012"=>"2"
         )
     );
-
-    $wijn = $_SESSION['wijnarray'];
 }
+<<<<<<< HEAD
 
 $winename = $_GET['wine'];
 $rating1 = $_GET['rating1'];
@@ -89,10 +81,14 @@ if($exits === FALSE) {
     $wijn[] = $newWine;
 }
 
+=======
+    // Zet de sessie als variabele
+    $wijn = $_SESSION['wijnarray'];
+>>>>>>> 6e95dc87748e017790539f3d1c1e093214c1cc53
 
         echo "<table>";
         echo "<th> </th> <th>2010</th> <th>2011</th> <th>2012</th>";
-        foreach ($wijn as $key => $value) {
+        foreach ($wijn as  $key => $value) {
             echo "<tr>";
             echo "<td><a href='arrayopdracht.php?id=$key'>$key</a></td>";
             echo "<td>".$wijn[$key]['2010']."</td>";
@@ -101,7 +97,10 @@ if($exits === FALSE) {
             echo "</tr>";
         }
         echo "</table>";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6e95dc87748e017790539f3d1c1e093214c1cc53
 ?>
 
 </body>
