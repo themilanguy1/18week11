@@ -15,11 +15,11 @@
 // Print multidimensional associative array
 function printAssocArray($name) {
 /* NOTE: De jaren moeten nog uniek worden gemaakt. */
+
     foreach($name as $key => $value) {
-    // outter loop
         echo $key . "<br>";
         foreach($value as $year => $rating) {
-            $value = array_unique($value);
+            // $value = array_unique($value);
             echo $year .  ": ";
             echo $value[$year] . " ";
             
@@ -27,7 +27,16 @@ function printAssocArray($name) {
         echo "<br>";
   
     }
-    
+}
+
+//TODO: Add new wine.
+function addAssocArrayRow() {
+
+}
+
+//TODO: Remove wine.
+function RemoveAssocArrayRow() {
+
 }
 
 $wijnen = array(
@@ -44,11 +53,14 @@ $wijnen = array(
     "Chateau migraine"=>array(
         "2010"=>"1",
         "2011"=>"5",
-        "2012"=>"2"
+        "2012"=>"2",
+        "2014"=>"9" 
         )
     );
-
-    printAssocArray($wijnen);
+    
+    /* Call functions */
+    //addAssocArrayRow();
+    printAssocArray($wijnen); 
 
 ?>
 </body>
