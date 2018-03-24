@@ -45,48 +45,12 @@
 https://stackoverflow.com/questions/1960730/add-values-to-an-associative-array-in-php
 */
 session_start();
+$exits = FALSE;
 
-$winename = $_GET['wine'];
-$rating1 = $_GET['rating1'];
-$rating2 = $_GET['rating2'];
-$rating3 = $_GET['rating3'];
-
-if(isset($winename)) {
-    if(isset($_SESSION['add_array'])) {
-    $_SESSION['array_input'] = array(
-        "$winename" => array(
-            "2010" => "$rating1",
-            "2011" => "$rating2",
-            "2012" => "$rating3"
-        )
-    );
-    
-    // $array_input = array_merge((array)$add_array, (array) $add_array2);
-    } else {
-    $_SESSION['add_array'] = array(
-        "$winename" => array(
-            "2010" => "$rating1",
-            "2011" => "$rating2",
-            "2012" => "$rating3"
-        )
-    );
-}
-    
-} else {
-    echo "Voer een wijn naam in.";
-}
-
-// Check of the de wijnarray session bestaat
 if(isset($_SESSION['wijnarray'])) {
-    // Loop door de array heen
-    foreach($_SESSION['wijnarray'] as $wijnItem) {
-        // Delete rij gebasseerd op input
-        unset($_SESSION['wijnarray'][$_GET['id']]);
-        $wijn = array_merge((array)$_SESSION['wijnarray'], (array) $_SESSION['array_input']);
-    }
-// Aanmaken array als de session niet is geset
+  
 } else {
-$_SESSION['wijnarray'] = array( // array bestaat NIET
+$_SESSION['wijnarray'] = array( 
     "Chardonnai"=>array(
         "2010"=>"3",
         "2011"=>"5",
@@ -107,10 +71,25 @@ $_SESSION['wijnarray'] = array( // array bestaat NIET
     $wijn = $_SESSION['wijnarray'];
 }
 
-    // // Zet de sessie als variabele
-    // $wijn = $_SESSION['wijnarray'];
+$winename = $_GET['wine'];
+$rating1 = $_GET['rating1'];
+$rating2 = $_GET['rating2'];
+$rating3 = $_GET['rating3'];
 
-        // Print table 
+
+foreach($wijn as $key => &$value) {
+ // if($key == $winename) {
+     $exits = TRUE;
+     break;
+  //}
+}
+
+if($exits === FALSE) {
+    $newWine = array($winename, $rating1, $rating2, $rating3);
+    $wijn[] = $newWine;
+}
+
+
         echo "<table>";
         echo "<th> </th> <th>2010</th> <th>2011</th> <th>2012</th>";
         foreach ($wijn as $key => $value) {
@@ -123,8 +102,6 @@ $_SESSION['wijnarray'] = array( // array bestaat NIET
         }
         echo "</table>";
 
-        //print_r($add_array2);
-        // var_dump($add_array);
 ?>
 
 </body>
